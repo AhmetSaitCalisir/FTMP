@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "580393160200",
+    "firebase_url": "https://ftmp-fac9b.firebaseio.com",
+    "project_id": "ftmp-fac9b",
+    "storage_bucket": "ftmp-fac9b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580393160200:android:31c665c38c1127d5604bbd",
+        "android_client_info": {
+          "package_name": "com.girift.Ftmp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580393160200-asucloc5u70f5kjf6dhnt4c3g0r6hcjr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1LV0HrOegApwCmlu7egQAilxEFmoog1g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "580393160200-asucloc5u70f5kjf6dhnt4c3g0r6hcjr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,2 @@
+rootProject.name='FTMP'
+include ':app'
