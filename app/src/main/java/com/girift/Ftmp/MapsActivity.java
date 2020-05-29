@@ -2,6 +2,7 @@ package com.girift.Ftmp;
 
 import androidx.fragment.app.FragmentActivity;
 
+
 import android.os.Bundle;
 import android.view.View;
 
@@ -94,8 +95,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         BizM = new MarkerOptions().position(Biz).title("Siz");
         Bizz =  mMap.addMarker(BizM);
-
         mMap.moveCamera(CameraUpdateFactory.newLatLng(Biz));
+
     }
 
     public void Bul(View view) {
