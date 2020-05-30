@@ -126,7 +126,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Konum_Gelen=new LatLng(Double.parseDouble(dataSnapshot.child("Kullanicilar").child("2").getValue(Kullanici.class).getKullaniciEnlem()),Double.parseDouble(dataSnapshot.child("Kullanicilar").child("2").getValue(Kullanici.class).getKullaniciBoylam()));
+                Konum_Gelen=new LatLng(Double.parseDouble(dataSnapshot.child("Kullanicilar").child(ID_Gelen).getValue(Kullanici.class).getKullaniciEnlem()),Double.parseDouble(dataSnapshot.child("Kullanicilar").child(ID_Gelen).getValue(Kullanici.class).getKullaniciBoylam()));
             }
 
             @Override
@@ -150,8 +150,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             Konum_Biz = new LatLng(location.getLatitude(),location.getLongitude());
                             MarkerOptions Options_Biz = new MarkerOptions().position(Konum_Biz).title("Buradasınız");
                             Marker_Biz = googleMap.addMarker(Options_Biz);
-                            databaseReference.child("Kullanicilar").child("1").child("kullaniciBoylam").setValue(Double.toString(location.getLongitude()));
-                            databaseReference.child("Kullanicilar").child("1").child("kullaniciEnlem").setValue(Double.toString(location.getLatitude()));
+                            databaseReference.child("Kullanicilar").child(ID_Biz).child("kullaniciBoylam").setValue(Double.toString(location.getLongitude()));
+                            databaseReference.child("Kullanicilar").child(ID_Biz).child("kullaniciEnlem").setValue(Double.toString(location.getLatitude()));
                             if (Ariyor && Konum_Gelen!=null){
                                 if (Marker_Gelen != null){Marker_Gelen.remove();}
                                 if (Marker_Orta !=null){Marker_Orta.remove();}
