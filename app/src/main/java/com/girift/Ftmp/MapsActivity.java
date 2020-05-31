@@ -35,6 +35,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+    //Ekran İtemleri
+    TextView Text_Gelen;
+
     //Layout
     LinearLayout Buttonlar;
 
@@ -43,7 +47,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Boolean Orta;
     Boolean Diger;
     float Mesafe;
-
 
     //Harita İçin
     SupportMapFragment supportMapFragment;
@@ -78,6 +81,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        //Ekran itemleri
+        Text_Gelen = (TextView) findViewById(R.id.textView);
 
         //Layout
         Buttonlar = (LinearLayout) findViewById(R.id.Butonlar);
@@ -117,22 +123,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 getCurrentLocation();
                 timer.start();
             }
-
-
         }.start();
 
         //Arabulucu İçin
         Ariyor=false;
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Konum_Gelen=new LatLng(Double.parseDouble(dataSnapshot.child("Kullanicilar").child(ID_Gelen).getValue(Kullanici.class).getKullaniciEnlem()),Double.parseDouble(dataSnapshot.child("Kullanicilar").child(ID_Gelen).getValue(Kullanici.class).getKullaniciBoylam()));
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-            }
-        });
 
     }
 
@@ -147,19 +141,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
                             if (Marker_Biz!=null){Marker_Biz.remove();}
-                            Konum_Biz = new LatLng(location.getLatitude(),location.getLongitude());
-                            MarkerOptions Options_Biz = new MarkerOptions().position(Konum_Biz).title("Buradasınız");
-                            Marker_Biz = googleMap.addMarker(Options_Biz);
-                            databaseReference.child("Kullanicilar").child(ID_Biz).child("kullaniciBoylam").setValue(Double.toString(location.getLongitude()));
-                            databaseReference.child("Kullanicilar").child(ID_Biz).child("kullaniciEnlem").setValue(Double.toString(location.getLatitude()));
-                            if (Ariyor && Konum_Gelen!=null){
-                                if (Marker_Gelen != null){Marker_Gelen.remove();}
-                                if (Marker_Orta !=null){Marker_Orta.remove();}
-                                Konum_Orta = new LatLng((Konum_Biz.latitude+Konum_Gelen.latitude)/2,(Konum_Biz.longitude+Konum_Gelen.longitude)/2);
-                                MarkerOptions Options_Gelen = new MarkerOptions().position(Konum_Gelen).title("Buluşacağınız kişi");
-                                MarkerOptions Options_Orta = new MarkerOptions().position(Konum_Orta).title("Orta Nokta");
-                                Marker_Gelen = googleMap.addMarker(Options_Gelen);
-                                Marker_Orta = googleMap.addMarker(Options_Orta);
+                                Konum_Biz = new LatLng(location.getLatitude(),location.getLongitude());
+                                MarkerOptions Options_Biz = new MarkerOptions().position(Konum_Biz).title("Buradasınız");
+                                Marker_Biz = googleMap.addMarker(Options_Biz);
+                                databaseReference.child("Kullanicilar").child(ID_Biz).child("kullaniciBoylam").setValue(Double.toString(location.getLongitude()));
+                                databaseReference.child("Kullanicilar").child(ID_Biz).child("kullaniciEnlem").setValue(Double.toString(location.getLatitude()));
+                                if (Ariyor && Konum_Gelen!=null){
+                                    if (Marker_Gelen != null){Marker_Gelen.remove();}
+                                    if (Marker_Orta !=null){Marker_Orta.remove();}
+                                    Konum_Orta = new LatLng((Konum_Biz.latitude+Konum_Gelen.latitude)/2,(Konum_Biz.longitude+Konum_Gelen.longitude)/2);
+                                    MarkerOptions Options_Gelen = new MarkerOptions().position(Konum_Gelen).title("Buluşacağınız kişi");
+                                    MarkerOptions Options_Orta = new MarkerOptions().position(Konum_Orta).title("Orta Nokta");
+                                    Marker_Gelen = googleMap.addMarker(Options_Gelen);
+                                    Marker_Orta = googleMap.addMarker(Options_Orta);
                             }
                             if (Ben) { googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Konum_Biz,Mesafe)); }
                             else if (Orta) {googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Konum_Orta,Mesafe));}
@@ -181,17 +175,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
-    }
+    public void onMapReady(GoogleMap googleMap) {}
 
     public void Bul(View view) {
-        ID_Gelen="2";
-        Ariyor=true;
+        ID_Gelen=Text_Gelen.getText().toString();
+        Ariyor = true;
         Buttonlar.setVisibility(View.VISIBLE);
         Ben = false;
         Orta = true;
         Diger = false;
         Mesafe = 50;
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Konum_Gelen = new LatLng(Double.parseDouble(dataSnapshot.child("Kullanicilar").child(ID_Gelen).getValue(Kullanici.class).getKullaniciEnlem()),Double.parseDouble(dataSnapshot.child("Kullanicilar").child(ID_Gelen).getValue(Kullanici.class).getKullaniciBoylam()));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
     }
 
     public void Ben(View view) {
@@ -224,6 +227,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Mesafe-=5;
         }
     }
-
 }
-
