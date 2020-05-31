@@ -92,8 +92,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Ben=true;
         Mesafe = 10;
 
-        //Fake IDler
-        ID_Biz="1";
+        //IDler
+        Bundle gelenVeri = getIntent().getExtras();
+        ID_Biz =gelenVeri.getString("Biz_ID");
 
         //DataBase İçin
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -178,7 +179,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {}
 
     public void Bul(View view) {
-        ID_Gelen=Text_Gelen.getText().toString();
+        //ID_Gelen=Text_Gelen.getText().toString();
+        ID_Gelen="1";
         Ariyor = true;
         Buttonlar.setVisibility(View.VISIBLE);
         Ben = false;

@@ -93,8 +93,7 @@ tools:context=".MapsActivity">
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Deneme Yazısı" />
+                android:inputType="textPersonName" />
 
             <Button
                 android:id="@+id/button"

@@ -8,14 +8,64 @@
 
     <Button
         android:id="@+id/button_Giris"
-        android:layout_width="276dp"
-        android:layout_height="380dp"
-        android:text="Giriş Yap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="GirisYap"
-        android:textSize="50sp"
+        android:text="Giriş Yap"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editText_Sifre"
+        app:layout_constraintStart_toStartOf="@+id/editText_Sifre"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kullanıcı Adı"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_Isim"
+        app:layout_constraintEnd_toStartOf="@+id/editText_Isim"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/editText_Isim" />
+
+    <EditText
+        android:id="@+id/editText_Isim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19999999" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Şifre"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_Sifre"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/editText_Sifre" />
+
+    <EditText
+        android:id="@+id/editText_Sifre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_Giris"
+        app:layout_constraintEnd_toEndOf="@+id/editText_Isim"
+        app:layout_constraintStart_toStartOf="@+id/editText_Isim"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Isim" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
