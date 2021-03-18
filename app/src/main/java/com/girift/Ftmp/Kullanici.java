@@ -1,7 +1,7 @@
 package com.girift.Ftmp;
 
 public class Kullanici {
-    private String KullaniciID;
+    public String KullaniciID;
     private String KullaniciAd;
     private String KullaniciSifre;
     private String KullaniciBoylam;
